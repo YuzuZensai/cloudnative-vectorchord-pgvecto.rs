@@ -116,6 +116,7 @@ jobs:
           build-args: |
             CNPG_TAG=${{ matrix.cnpg }}
             PGVECTORS_TAG=${{ matrix.pgvectors }}
+            VECTORCHORD_TAG=${{ matrix.vectorchord }}
 
   results:
       if: ${{ always() }}
