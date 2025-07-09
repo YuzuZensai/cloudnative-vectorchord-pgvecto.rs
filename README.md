@@ -1,5 +1,5 @@
 # cnpgvecto.rs
-Container images for [cloudnative-pg](https://cloudnative-pg.io/) with [VectorChord](https://github.com/tensorchord/VectorChord) and [pgvecto.rs](https://github.com/tensorchord/pgvecto.rs) extension installed.
+Container images for [cloudnative-pg](https://cloudnative-pg.io) with [VectorChord](https://github.com/tensorchord/VectorChord) and [pgvecto.rs](https://github.com/tensorchord/pgvecto.rs) extension installed.
 
 
 > [!IMPORTANT]
