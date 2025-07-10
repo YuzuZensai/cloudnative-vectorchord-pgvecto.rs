@@ -17,10 +17,10 @@ RUN PG_MAJOR=$(echo $CNPG_TAG | cut -d'-' -f1 | cut -d'.' -f1) && \
     VERSION_NUM=${PGVECTORS_TAG#"v"} && \
     if [ "$PG_MAJOR" = "17" ] && [ "$VERSION_NUM" = "0.3.0" ]; then \
         # Special case for PG17 with v0.3.0 - use vectors variant
-        curl -L -o ./pgvectors.deb "https://github.com/tensorchord/pgvecto.rs/releases/download/$PGVECTORS_TAG/vectors-pg${PG_MAJOR}_${VERSION_NUM}_${TARGETARCH}_vectors.deb"; \
+        curl -L -o ./pgvectors.deb "https://github.com/tensorchord/pgvecto.rs/releases/download/v$PGVECTORS_TAG/vectors-pg${PG_MAJOR}_${VERSION_NUM}_${TARGETARCH}_vectors.deb"; \
     else \
         # Standard naming for other versions
-        curl -L -o ./pgvectors.deb "https://github.com/tensorchord/pgvecto.rs/releases/download/$PGVECTORS_TAG/vectors-pg${PG_MAJOR}_${VERSION_NUM}_$TARGETARCH.deb"; \
+        curl -L -o ./pgvectors.deb "https://github.com/tensorchord/pgvecto.rs/releases/download/v$PGVECTORS_TAG/vectors-pg${PG_MAJOR}_${VERSION_NUM}_$TARGETARCH.deb"; \
     fi && \
     apt install -y ./pgvectors.deb && \
     rm -f ./pgvectors.deb

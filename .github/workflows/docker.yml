@@ -86,7 +86,10 @@ jobs:
         id: version
         run: |
           pg_major=$(echo ${{ matrix.cnpg }} | cut -d'.' -f1)
+          # Remove -bookworm suffix from cnpg tag for cleaner image tags
+          pg_full=$(echo ${{ matrix.cnpg }} | cut -d'-' -f1)
           echo "pg_major=$pg_major" >> "$GITHUB_OUTPUT"
+          echo "pg_full=$pg_full" >> "$GITHUB_OUTPUT"
 
       - name: Generate docker image tags
         id: metadata
@@ -98,10 +101,9 @@ jobs:
           images: |
             name=ghcr.io/${{ github.repository_owner }}/cloudnative-vectorchord-pgvecto.rs
           tags: |
-            type=raw,value=${{ matrix.cnpg }}-${{ matrix.pgvectors }},enable=${{ steps.should-release.outputs.result }}
-            type=raw,value=${{ steps.version.outputs.pg_major }}-${{ matrix.pgvectors }},enable=${{ steps.should-release.outputs.result }}
-            type=raw,value=${{ matrix.cnpg }},enable=${{ steps.should-release.outputs.result }}
-            type=raw,value=${{ steps.version.outputs.pg_major }},enable=${{ steps.should-release.outputs.result }}
+            # Three-component tags: pg-pgvectors-vectorchord
+            type=raw,value=${{ steps.version.outputs.pg_major }}-${{ matrix.pgvectors }}-${{ matrix.vectorchord }},enable=${{ steps.should-release.outputs.result }}
+            type=raw,value=${{ steps.version.outputs.pg_full }}-${{ matrix.pgvectors }}-${{ matrix.vectorchord }},enable=${{ steps.should-release.outputs.result }}
 
       - name: Build and push image
         uses: docker/build-push-action@v6.18.0
