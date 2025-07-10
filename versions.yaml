@@ -9,7 +9,7 @@ cnpg:
   - "17.5-bookworm"
 pgvectors:
   # renovate: datasource=github-releases depName=tensorchord/pgvecto.rs
-  - "v0.4.0"
+  - "v0.3.0"
 vectorchord:
   # renovate: datasource=github-releases depName=tensorchord/VectorChord
   - "0.4.3"
